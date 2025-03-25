@@ -1,0 +1,883 @@
+@mixin mobile {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin pc {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+@mixin font-large-1 {
+    // font-size: 20px;
+    font-size: 20px;
+    line-height: 30px;
+
+    @media screen and (max-width: 767px) {
+        font-size : $font-medium;
+        line-height: 24px;
+    }
+}
+
+
+// table
+.tb_row {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-bottom: 2px solid #000000;
+        thead {
+            th {
+                padding: 16px 24px;
+                border-top: 2px solid #000000;
+                border-bottom: 1px solid #000000;
+                background-color: #eaeaea;
+                color:#000000;
+                font-weight: 500;
+                font-size: 24px;
+                text-align: center;
+                border-right: 1px dashed #000;
+                &:last-child {
+                    border-right: 0;
+                }
+                @include mobile {
+                    padding: 8px 10px;
+                    font-size: 15px;
+                }
+            }
+           
+        }
+        td {
+            padding: 40px 50px;
+            font-size: 22px;
+            color: #000;
+            text-align: center;
+            border-right: 1px dashed #000;
+            &:last-child {
+                border-right: 0;
+            }
+            @include mobile {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+        }
+
+    }
+}
+
+
+
+
+
+// 모달 기본
+.popup-lay {
+    display:none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    .popup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        .inner {
+            width: 100%;
+            max-width:1104px;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            @include mobile {
+                margin: 0 4.45%;
+            }
+        }
+        .pop-header {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            background-color: #000;
+            color: #fff;
+            .title {
+                margin-right: auto;
+                font-weight: bold;
+                font-size: 30px;
+            }
+        }
+        .modal-close {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-left: auto;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40.95' height='39.95'%3E%3Cpath fill='none' stroke='%23FFF' stroke-width='3.3' d='M3.736 3.659 35.707 34.66M35.707 3.659 3.736 34.66'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        .button-wrap {
+            .modal-close {
+                width: auto;
+                height: auto;
+            }
+        }
+        @include mobile {
+            .modal-close {
+                width: 16px;
+                height: 16px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46.641' height='45.641'%3E%3Cpath fill='none' stroke='%23FFF' stroke-width='3.094' d='m3.321 3.025 39.024 37.826M42.345 3.025 3.321 40.851'/%3E%3C/svg%3E");
+            }
+        }
+    }   
+}
+
+// 모달 안 내용
+.info-cont-wrap {
+    display: none;
+    &.active {
+        display: block;
+    }
+    .info-header {
+        display: flex;
+        align-items: center;
+        padding: 30px;
+        background-color: #000;
+        color: #fff;
+        .title-em {
+            margin-right: auto;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        @include mobile {
+            padding: 20px 15px;
+            .title-em {
+                font-size: 22px;
+            }
+            
+        }
+    }
+    .info-header2 {
+        padding: 30px 50px 0;
+        display: flex;
+        align-items: flex-start;
+        .title-em {
+            padding-top: 15px;
+            margin-right: auto;
+            font-weight: bold;
+            font-size: 26px;
+            line-height: 34px;
+        }
+        .modal-close {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin-left: auto;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='36'%3E%3Cpath fill='none' stroke='%230D0B07' stroke-width='2' d='m2.086 2.008 31.971 31.003M34.057 2.008 2.086 33.011'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        & + main  {padding-top: 0;}
+        @include mobile {
+            padding: 20px 15px;
+            .title-em {
+                padding-top: 10px;
+                font-size: 18px;
+                line-height: 22px;
+            }
+            .modal-close {
+                width: 18px;
+                height: 18px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46.641' height='45.641'%3E%3Cpath fill='none' stroke='%23000' stroke-width='3.094' d='m3.321 3.138 39.024 37.825M42.345 3.138 3.321 40.963'/%3E%3C/svg%3E");
+            }
+        }
+    }
+    .tit-wrap{
+        position: relative;
+        margin-bottom: 24px;
+        padding: 0;
+        .h2-tit {
+            font-weight: bold;
+            font-size: 26px;
+            line-height: 34px;
+            @include mobile {
+                font-size: 20px;
+                line-height: 26px;
+            }
+        }
+        @include mobile {
+            margin-bottom: 10px;
+        }
+    } 
+    .mid-title {
+        position: relative;
+        margin-top: 20px;
+        padding-left: 24px;
+        .tit {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .sub {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        &::before {
+            content:'';
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: 0;
+            width: 18px;
+            height: 18px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath fill='%230D0B07' fill-rule='evenodd' d='m13.915 12.822-3.719-3.721 3.719-3.721 3.719 3.721-3.719 3.721ZM5.197 4.1 8.916.38l3.72 3.72-3.72 3.721L5.197 4.1Zm-1.279 8.722L.198 9.101l3.72-3.721 3.719 3.721-3.719 3.721Zm8.718 1.28-3.72 3.72-3.719-3.72 3.719-3.721 3.72 3.721Z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+    }
+    main {
+        max-height: 500px;
+        padding: 50px 70px;
+        overflow-y: auto;
+    }
+    .button-wrap {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        text-align: center;
+        .btn-item {
+            width: calc(50% - 10px);
+        }
+        .img {
+            img {width: 100%;}
+        }
+    }
+    @include mobile {
+        .mid-title {
+            margin:0 0 20px;
+            padding-left: 16px;
+            .tit {
+                font-size: 15px;
+                font-weight: 700;
+            }
+            .sub {
+                margin-top:5px;
+                font-size: 12px;
+            }
+            &::before {
+                width: 13px;
+                height: 13px;
+                top: 2px;
+              
+            }
+        }
+        main {
+            padding: 20px 5%;
+        }
+        .button-wrap {
+            .btn-item {
+                width: calc(50% - 5px);
+            }
+        }
+    }
+}
+  
+// 참여정보
+.form-wrap {
+     margin-bottom: 50px;
+     @include mobile {
+        margin-bottom: 25px;
+    }
+}
+.forms {
+    margin-top: 40px;
+    .tit {
+        display: inline-block;
+        color: #000;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 26px;
+    }
+    
+    .mid-desc {
+        margin: 15px 0;
+        font-size: 18px;
+    }
+    .conts {
+        margin-top: 8px;
+    }
+    .mg-left { margin-left: 15px !important;}
+    .noti {
+        position: relative;
+        margin-top: 10px;
+        padding-left: 15px;
+        font-size: 14px;
+        color: #000;
+        &:before {
+            content:'*';
+            display: block;
+            position: absolute;
+            top: 1px;
+            left: 5px;
+        }
+    }
+    &.block-type {
+        .tit {
+            position: relative;
+            padding-left: 15px;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 0;
+                display: block;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #000;
+            }
+        }
+       
+    } 
+    @include mobile {
+        margin-top: 20px;
+        .tit {
+            font-size: 15px;
+            line-height: 18px;
+            letter-spacing: -0.4px;
+        }
+        .txt-sm {
+            font-size: 12px; 
+            &.block {
+                display: block;
+            }
+        }
+        .mid-desc {
+            margin: 8px 0;
+            font-size: 13px;
+        }
+        &:first-child {margin-top: 0;}
+        &.block-type {
+            .tit {
+                padding-left: 8px;
+                font-size: 14px;
+                &::before {
+                    content: '';
+                    top: 7px;
+                    width: 3px;
+                    height: 3px;
+                }
+            }
+        }
+        .noti {
+            position: relative;
+            margin-top: 8px;
+            padding-left: 12px;
+            font-size: 11px;
+        }
+        .mg-left { margin-left: 8px !important;}
+    }
+}
+ 
+// 인풋박스
+.input-wrap {
+    input {
+        display:inline-block;
+        width:100%;
+        height: 56px;
+        padding: 10px 15px;
+        border:1px solid #bababa;
+        border-radius:8px;
+        color:#000;
+        font-size: 18px;
+        line-height: 26px;
+        vertical-align: top;
+        box-sizing: border-box;
+        outline: none;
+        &:disabled,
+        &.disabled,
+        &:read-only {
+            background:#f5f5f5;
+            border-color:#bababa;
+            &::placeholder {
+                color:#bababa;
+            }
+        }
+    }
+    textarea {
+        display: inline-block;
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #bababa;
+        border-radius: 8px;
+        color: #000;
+        font-size: 18px;
+        line-height: 26px;
+        vertical-align: top;
+        color: #000;
+        outline: none;
+        box-sizing: border-box;
+        &:disabled,
+        &.disabled,
+        &:read-only {
+            background:#f5f5f5;
+            border-color:#bababa;
+            &::placeholder {
+                color:#bababa;
+            }
+        }
+    }
+    &.h-size {
+        textarea {
+            height: 200px;
+        }
+    }
+    @include mobile {
+        input {
+            height: 44px;
+            padding: 10px;
+            font-size: 13px;
+        }
+        textarea {
+            padding: 10px;
+            font-size: 13px;
+            line-height: 18px;
+        }
+        &.h-size {
+            textarea {
+                height: 100px;
+            }
+        }
+        #saveProcut {   // 모바일에서 텍스트 길어서
+            font-size: 11.5px;
+            letter-spacing:-0.4px;
+        }
+    }
+}
+
+.bullet-list {
+    margin-top: 8px;
+    margin-left: 10px;
+    .b-txt {
+        position: relative;
+        font-size: 18px;
+        color :#000;
+        padding-left: 10px;
+        line-height: 24px;
+        &:before {
+            content:'';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 4px;
+            height: 4px;
+            margin-top: -2px;
+            border-radius: 50%;
+            background-color: #000;
+        }
+    }
+    @include mobile {
+        .b-txt {
+            font-size: 12px;
+            line-height: 16px;
+            &:before {
+                top: 8px;
+                width: 3px;
+                height: 3px;
+            }
+        }
+    }
+}
+
+.agree-input {
+    margin: 20px 20px 60px;
+    .rdo-wrap {
+        display: inline-flex;
+        margin-right: 30px;
+        label {
+            margin-left: 10px;
+            font-size: 24px;
+        }
+        
+    }
+    .chk-wrap {
+        label {
+            margin-left: 10px;
+            font-size: 24px;
+        }
+    }
+    @include mobile {
+        margin: 10px 10px 20px;
+        .rdo-wrap label {
+            margin-left: 0;
+            font-size: 14px;
+        }
+        .chk-wrap label {
+            margin-left: 0;
+            font-size: 14px;
+        }
+    }
+}
+
+// 라디오 버튼
+.rdo-wrap {
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        & + label {
+            position: relative;
+            display: inline-block;
+            padding-left: 30px;
+            color: #000;
+            font-size: 18px;
+            line-height: 26px;
+            vertical-align: top;
+            cursor: pointer;
+            &::after {
+                content: ' ';
+                position: absolute;
+                top: 1px;
+                left: 0;
+                width: 24px;
+                height: 24px;
+                background: no-repeat center center;
+                background-size: 100%;
+                background-image: url('https://www.lge.co.kr/lg5-common/images/icons/btn-radio-off-48.svg');
+               
+            }
+            @include mobile {
+                padding-left: 22px;
+                font-size: 13px;
+                line-height: 18px;
+                letter-spacing: -0.4px;
+                &::after {
+                    top: 0;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+        &:checked {
+            & + label {
+                &::after {
+                    background-image: url('https://www.lge.co.kr/lg5-common/images/icons/btn-radio-on-48.svg');
+                }
+            }
+        }
+    }
+   
+}
+
+//체크박스
+.chk-wrap {
+    position: relative;
+    display: inline-block;
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        & + label {
+            position: relative;
+            display: inline-block;
+            padding-left: 30px;
+            color: #000;
+            font-size: 18px;
+            line-height: 26px;
+            vertical-align: top;
+            cursor: pointer;
+            &::after {
+                content: ' ';
+                position: absolute;
+                top: 1px;
+                left: 0;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: no-repeat center center;
+                background-size: 100%;
+                background-image:none;
+                background-color: #eaeaea;
+            }
+            @include mobile {
+                padding-left: 22px;
+                font-size: 13px;
+                line-height: 18px;
+                &::after {
+                    top: 0;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+        &:checked {
+            & + label {
+                &::after {
+                    background-image: url('https://www.lge.co.kr/lg5-common/images/icons/btn-checkbox-on-48.svg');
+                    background-size: cover;
+                }
+            }
+        }
+    }
+}
+
+.agree-list-notice {
+    overflow: auto;
+    height: 160px;
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 1px solid #000;
+    color: #000;
+    background-color: #eaeaea;
+    .tit {
+        padding-bottom: 12px;
+        font-size: 16px;
+    }
+    .agree-txt {
+        li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 13px;
+            line-height: 18px;
+            &::before {
+               
+                content:'- ';
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+            }
+        }
+    }
+    @include mobile {
+        margin-bottom: 15px;
+        padding: 10px;
+        .tit { font-size: 14px;}
+        .agree-txt { font-size: 10px; }
+    }
+}
+
+
+//LG 제품보유 인증 관련
+.select-list-wrap {
+    padding-left: 20px;
+    .rdo-wrap {
+        margin-right: 40px;
+    }
+    .chk-wrap {
+        margin-right: 40px;
+    }
+    .list-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        .lists {
+            margin: 5px 0;
+            &.last-type {
+                display: flex;
+                width: 100% !important;
+                .input-wrap {
+                    width: 80%;
+                    input {
+                        height: 45px;
+                        font-size: 16px;
+                    }
+                    @include mobile {
+                        padding-left: 10px;
+                        margin-top: -5px;
+                        input {
+                            padding: 5px 10px;
+                            height: 30px;
+                            font-size: 13px;
+                        }
+                    }
+                }
+                .rdo-wrap {
+                    flex-shrink: 0;
+                }
+            }
+            
+        }
+        &.col2 {
+            padding: 0 20px;
+            .lists {
+                width: 40%;
+            }
+            @include mobile {
+                padding: 0;
+                .lists {
+                    width: 50%;
+                }
+            }
+        }
+        &.col2-re {
+            padding: 0 20px;
+            .lists {
+                width: 20%;
+                &.last-type {
+                display: flex;
+                width: 60% !important;
+                
+                }   
+            }
+            @include mobile {
+                padding: 0;
+                .lists {
+                    &.last-type {
+                        .rdo-wrap {margin-right: 0;}
+                    }
+                }
+            }
+        }
+        &.col3 {
+            padding: 0 20px;
+            .lists {
+                width: 33%;
+            }
+            @include mobile {
+                padding: 0;
+                .lists {
+                    width: 50%;
+                }
+                .chk-wrap {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    @include mobile {
+        padding-left: 10px;
+        .rdo-wrap {
+            margin-right: 20px;
+            &:last-child {margin-right: 0;}
+        }
+        .chk-wrap {
+            margin-right: 20px
+        }
+    }
+}
+
+.submit-done-box {
+    text-align: center;
+    margin: 0 auto 80px;
+    .icon-info-submit {
+        display: block;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='133' height='133'%3E%3Cpath fill='%23F0E2E2' fill-rule='evenodd' d='M66.5-.001c36.727 0 66.5 29.774 66.5 66.5C133 103.227 103.227 133 66.5 133 29.773 133 0 103.227 0 66.499c0-36.726 29.773-66.5 66.5-66.5Z'/%3E%3Cpath fill='%23FFF' fill-rule='evenodd' d='M66.1 84.001c5.318 0 8 3.581 8 8 0 4.417-2.682 8-8 8-3.518 0-8-3.583-8-8 0-4.419 4.482-8 8-8ZM66.1 34.1c5.318 0 8 4.482 8 8.9v21c0 4.418-2.682 7.1-8 7.1-3.518 0-8-2.682-8-7.1V43c0-4.418 4.482-8.9 8-8.9Z'/%3E%3C/svg%3E");
+        background-size: cover;
+    }
+    .tit-em {
+        font-weight: 700;
+        font-size: 40px;
+        color: #000;
+        .color-h {
+            position: relative;
+            color: #f23f38;
+            em {
+                position: relative;
+                z-index: 2;
+            }
+            &:before {
+                content:'';
+                position: absolute;
+                bottom: 0;
+                left: -2px;
+                right: -2px;
+                display: block;
+                height: 12px;
+                background-color: #f0e2e2;
+            }
+        }
+    }   
+    .sub-em {
+        margin-top: 15px;
+        font-size: 32px;
+        color: #9c9c9c
+    }
+    @include mobile {
+        margin-bottom: 50px;
+        .icon-info-submit {
+            width: 60px;
+            height: 60px;
+        }
+        .tit-em {
+            font-size: 24px;
+            .color-h {
+                &:before {
+                    left: -1px;
+                    right: -1px;
+                    height: 10px;
+                }
+            }
+        }  
+        .sub-em {
+            margin-top: 10px;
+            font-size: 18px;
+             
+        }
+    }
+}
+
+// 파일선택
+.upload-wrap {
+    display: flex;
+    margin: 20px 0;
+    padding-left: 15px;
+    .button-file-multi {
+        position: relative;
+        margin-right: 10px;
+        label {
+            display: block;
+            height: 100%
+        }
+        input {display: none;}
+    }
+    @include mobile {
+        padding-left: 0;
+        .button-file-multi,
+        .button-file-upload {
+            width: 40%;
+            img {width: 100%;}
+        }
+    }
+}
+.upload-preview {
+    display: none;
+    margin-left: 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #bababa;
+    border-radius: 8px;
+    padding: 15px;
+    &.active {display: block;}
+    p {
+        position: relative;
+        width: 100%;
+        margin: 10px 0;
+        color: #989898;
+        button {
+            position: absolute;
+            right: 15px;
+            width: 13px;
+            height: 13px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='13'%3E%3Cpath fill='%23989898' fill-rule='evenodd' d='m9.891 12.105 1.655-1.655-3.988-3.988 4.031-4.032L9.892.733 5.86 4.764 1.871.775.216 2.43l3.989 3.989L.174 10.45l1.697 1.698 4.031-4.032 3.989 3.989Z'/%3E%3C/svg%3E");
+            background-size: cover;
+            font-size: 0;
+        }
+    }
+    @include mobile {
+        margin-left: 0;
+        p {
+            margin: 8px 0;
+            font-size: 12px;
+            button {
+                right: 0;
+            }
+        }
+    }
+
+}
+
+
+
